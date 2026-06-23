@@ -1,0 +1,16 @@
+# Secrets / Firebase config
+.env
+# Firebase / Google config files
+**/GoogleService-Info.plist
+**/google-services.json
+mobile_app/lib/firebase_options.dart
+web/legacy/js/firebase-auth.js
+.env.*
+web/legacy/js/firebase-auth.js
+mobile_app/lib/firebase_options.dart
+mobile_app/ios/Runner/GoogleService-Info.plist
+mobile_app/android/app/google-services.json
+
+# OS / Editor
+.DS_Store
+.vscode/

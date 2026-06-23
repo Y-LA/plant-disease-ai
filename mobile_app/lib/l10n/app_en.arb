@@ -1,0 +1,53 @@
+{
+  "appTitle": "Plant Disease Detector",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "welcomeMessage": "Welcome",
+  "welcomeUser": "Welcome, {name}",
+  "@welcomeUser": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "John"
+      }
+    }
+  },
+  "intelligentDiagnosisSystem": "Intelligent Diagnosis System",
+  "createdBy": "Created by:",
+  "supervisedBy": "Supervised by:\nProf. Heba Elnemr",
+  "login": "Login",
+  "signup": "Create New Account",
+  "guestLogin": "Login as Guest",
+  "pleaseLogin": "Please login to continue",
+  "scan": "Scan",
+  "history": "History",
+  "settings": "Settings",
+  "theme": "Theme",
+  "lightTheme": "Light",
+  "darkTheme": "Dark",
+  "systemTheme": "System",
+  "language": "Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "homeDescription": "Take a clear photo of a single leaf. We will predict the disease and suggest treatment.",
+  "tipsTitle": "Tips for best results",
+  "tip1": "Use good lighting (no harsh shadows).",
+  "tip2": "Keep the leaf centered and in focus.",
+  "tip3": "Avoid multiple leaves in one photo.",
+  "tip4": "Prefer plain background if possible.",
+  "camera": "Camera",
+  "gallery": "Gallery",
+  "privacyNotice": "Privacy: Images are used only for analysis. (MVP placeholder)",
+  "errorInvalidEmail": "The email address is badly formatted.",
+  "errorUserNotFound": "No user found for that email.",
+  "errorWrongPassword": "Wrong password provided for that user.",
+  "errorEmailAlreadyInUse": "The account already exists for that email.",
+  "errorWeakPassword": "The password provided is too weak.",
+  "errorDefault": "An unexpected error occurred. Please try again.",
+  "errorTitle": "Error",
+  "logout": "Logout",
+  "name": "Full Name",
+  "alreadyHaveAccount": "Already have an account? Login",
+  "dontHaveAccount": "Don't have an account? Sign up"
+}

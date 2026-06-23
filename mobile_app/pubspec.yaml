@@ -1,0 +1,33 @@
+name: plant_disease_mobile
+description: AI Plant Disease Detection System - Mobile UI (MVP)
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  image_picker: ^1.1.2
+  http: ^1.2.2
+  intl: ^0.20.2
+  animated_text_kit: ^4.3.0
+  flutter_localizations:
+    sdk: flutter
+  shared_preferences: ^2.5.4
+  provider: ^6.1.5+1
+  firebase_auth: ^6.2.0
+  google_fonts: ^8.0.2
+  share_plus: ^10.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
