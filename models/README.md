@@ -31,9 +31,9 @@ Choose one of the following:
 | Property | Value |
 |---|---|
 | Architecture | ResNet50 (checkpoint dict with `model_state_dict` + `class_names`) |
-| Classes | 43 (38 PlantVillage + 4 Rice + 1 "Not_plant") |
+| Classes | 43 (42 plant: 38 PlantVillage + 4 Rice, + 1 "Not_plant") |
 | Input | 224 × 224 px |
-| Test accuracy | 98.85% |
+| Test accuracy | 99.61% (Precision 99.53% · Recall 99.54% · F1 99.53%) |
 
 See [`../docs/training_details.md`](../docs/training_details.md) and
 [`../docs/ResNet50_Plant_Disease_Report.pdf`](../docs/ResNet50_Plant_Disease_Report.pdf)

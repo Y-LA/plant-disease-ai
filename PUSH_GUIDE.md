@@ -102,7 +102,8 @@ git push
 
 ## ⚠️ ملاحظة عن Firebase
 
-الريبو فيه ملفات إعداد Firebase (`google-services.json`، `GoogleService-Info.plist`،
-`firebase_options.dart`). دي مفاتيح **client-side** آمنة إنها تكون جوه التطبيق
-(محميّة بقواعد Firebase Security Rules). لو بتفضّل تخفيها، امسحها وفعّل السطور
-الخاصة بيها في `.gitignore`.
+ملفات إعداد Firebase (`google-services.json`، `GoogleService-Info.plist`،
+`firebase_options.dart`) **مستبعدة** من الريبو عن طريق `.gitignore` للأمان.
+أي حد ينزّل المشروع لازم يضيف نسخته الخاصة من
+[Firebase Console](https://console.firebase.google.com/) أو يشغّل
+`flutterfire configure`.
