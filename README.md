@@ -201,21 +201,15 @@ Firmware: [`hardware/esp32_sensor_sender/`](hardware/esp32_sensor_sender/) ·
 Wiring guide: [`docs/plant_hardware_setup.md`](docs/plant_hardware_setup.md).
 
 ---
-
 ## 📸 Screenshots
 
-> Screenshots live in [`docs/screenshots/`](docs/screenshots/). Replace the
-> placeholders below with your own captures.
+| Home | Upload | Result |
+|---|---|---|
+| <img src="docs/screenshots/home.png" width="220" /> | <img src="docs/screenshots/upload.png" width="220" /> | <img src="docs/screenshots/result.png" width="220" /> |
 
-| Screen | Path |
-|---|---|
-| Mobile app home | `docs/screenshots/home.png` |
-| Image upload | `docs/screenshots/upload.png` |
-| Diagnosis result | `docs/screenshots/result.png` |
-| Arabic treatment guidance | `docs/screenshots/treatment-ar.png` |
-| IoT sensor readings | `docs/screenshots/sensor-dashboard.png` |
-| Backend API test response | `docs/screenshots/api-response.png` |
-
+| Arabic Guidance | Sensor Dashboard | API Response |
+|---|---|---|
+| <img src="docs/screenshots/treatment-ar.png" width="220" /> | <img src="docs/screenshots/sensor-dashboard.png" width="220" /> | <img src="docs/screenshots/api-response.png" width="300" /> |
 <!-- Example once images are added:
 ![Home](docs/screenshots/home.png)
 ![Result](docs/screenshots/result.png)
