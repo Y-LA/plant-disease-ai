@@ -205,15 +205,12 @@ Wiring guide: [`docs/plant_hardware_setup.md`](docs/plant_hardware_setup.md).
 
 | Home | Upload | Result |
 |---|---|---|
-| <img src="docs/screenshots/home.png" width="220" /> | <img src="docs/screenshots/upload.png" width="220" /> | <img src="docs/screenshots/result.png" width="220" /> |
+| <img src="docs/screenshots/home.png" width="250" /> | <img src="docs/screenshots/upload.png" width="250" /> | <img src="docs/screenshots/result.png" width="250" /> |
 
 | Arabic Guidance | Sensor Dashboard | API Response |
 |---|---|---|
-| <img src="docs/screenshots/treatment-ar.png" width="220" /> | <img src="docs/screenshots/sensor-dashboard.png" width="220" /> | <img src="docs/screenshots/api-response.png" width="300" /> |
-<!-- Example once images are added:
-![Home](docs/screenshots/home.png)
-![Result](docs/screenshots/result.png)
--->
+| <img src="docs/screenshots/treatment-ar.png" width="250" /> | <img src="docs/screenshots/sensor-dashboard.png" width="250" /> | <img src="docs/screenshots/api-response.png" width="350" /> |
+
 
 ---
 
