@@ -1,191 +1,175 @@
 <div align="center">
 
-# 🌿 AI Plant Disease Detection System
+# 🌿 AI Plant Disease Diagnosis System
 
-**Graduation Project — Misr University for Science and Technology (MUST)**
-Supervisor: **Dr. Heba ELnemr** · 2026
-
-An AI-powered smart-agriculture system for **early plant disease detection** from
-leaf images, combined with **real-time environmental monitoring** (temperature,
-humidity, light) — turning a simple image classifier into a complete bilingual
-diagnostic and treatment-guidance tool.
+**An end-to-end AI + IoT graduation project**
+Misr University for Science and Technology (MUST) · Supervisor: Dr. Heba ELnemr · 2026
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.4+-02569B?logo=flutter&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-PyTorch-009688?logo=fastapi&logoColor=white)
-![Model](https://img.shields.io/badge/ResNet50-99.61%25%20accuracy-success)
-![ESP32](https://img.shields.io/badge/IoT-ESP32--S3-E7352C?logo=espressif&logoColor=white)
+![Model](https://img.shields.io/badge/ResNet50-99.61%25%20test%20acc-success)
+![IoT](https://img.shields.io/badge/IoT-ESP32--S3-E7352C?logo=espressif&logoColor=white)
 ![Platforms](https://img.shields.io/badge/Platforms-Android%20·%20iOS%20·%20Web%20·%20Desktop-informational)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 </div>
 
+> **AI-powered plant disease diagnosis system combining computer vision, mobile
+> app development, backend APIs, and IoT environmental monitoring.** The system
+> detects plant leaf diseases using a fine-tuned ResNet50 model, rejects
+> non-plant images, provides bilingual Arabic/English guidance, and monitors
+> environmental conditions using ESP32 sensors.
+
 ---
 
-## 📖 About
+## 📋 Overview
 
-This project is an AI-driven agricultural **decision-support system**. It goes
-beyond classification: it takes a leaf image, analyzes it with a trained
-ResNet50 model, and at the same time reads environmental data from sensors near
-the plant. It then merges both signals against a structured disease knowledge
-base to explain *likely causes* and give *targeted treatment and prevention* —
-all in **Arabic and English**.
+This project is a complete **agricultural decision-support system**, not just an
+image classifier. A user photographs a plant leaf; the system classifies the
+disease with a fine-tuned **ResNet50** model, cross-references a bilingual
+knowledge base for symptoms and treatment, and combines the result with live
+environmental readings (temperature, humidity, light) from **ESP32 sensors** to
+assess whether the surrounding conditions are accelerating the disease — all
+delivered through a cross-platform **Flutter** app in **Arabic and English**.
 
-The core contribution is **system integration** — connecting deep learning, an
-IoT sensor layer, a FastAPI inference backend, a bilingual knowledge base, and a
-cross-platform Flutter app into one practical product usable by real farmers and
-students, not just a research notebook.
+## ❓ Problem Statement
 
-### ✨ Key Features
+Plant diseases cause major crop losses, and early detection is difficult for
+non-experts. Existing tools usually stop at classification: they name a disease
+but give no treatment guidance, ignore environmental drivers of disease spread,
+blindly guess on non-plant images, and are rarely accessible to Arabic-speaking
+farmers.
 
-- 🔬 **Disease detection** — ResNet50 across **43 classes** (42 plant: 38 PlantVillage + 4 Rice) at **99.61% test accuracy**.
-- 🛡️ **Non-leaf rejection** — a dedicated `Not_plant` class rejects random / non-plant images.
-- 🌡️ **Environmental analysis** — ESP32 sensors (temperature, humidity, light) feed a risk assessment that explains whether the environment is helping the disease spread.
-- 📚 **Bilingual knowledge base** — 42 classes with symptoms, treatment, prevention, severity, and trusted sources (Arabic + English).
-- 📱 **Cross-platform app** — one Flutter codebase for Android, iOS, Web, and Desktop, with light/dark themes and Firebase auth.
-- 📊 **Web dashboard** — standalone results dashboard for monitoring.
+## 💡 Solution
+
+An integrated pipeline that goes from a single leaf photo to actionable advice:
+
+1. **Detect** the disease from the leaf image (ResNet50, 99.61% test accuracy).
+2. **Reject** non-plant images with a dedicated `Not_plant` class.
+3. **Explain** symptoms, treatment, and prevention from a bilingual knowledge base.
+4. **Contextualize** the diagnosis with real-time environmental risk analysis from IoT sensors.
+5. **Deliver** everything in a clean, bilingual mobile experience.
+
+---
+
+## ✨ Key Features
+
+- 🔬 **Plant disease classification** from leaf images (43 classes).
+- 🛡️ **Non-plant image rejection** via a dedicated `Not_plant` class.
+- 🌍 **Bilingual Arabic/English** diagnosis and treatment guidance.
+- 📱 **Flutter mobile app** for Android, iOS, Web, and Desktop.
+- ⚡ **FastAPI backend** serving real-time model inference.
+- 📡 **ESP32-S3 sensor integration** over WiFi (HTTP POST).
+- 🌡️ **DHT22** temperature & humidity monitoring.
+- 💡 **LDR** ambient light monitoring.
+- 🧠 **Environmental risk analysis** that links conditions to disease spread.
+- 🖼️ **User-friendly result preview** with confidence and top-3 predictions.
+- 🕓 **Diagnosis history tracking** of previous scans.
+- 🌗 **Light / dark mode** support.
+- 🧩 **Modular project structure** (backend · mobile · hardware · ml · web).
 
 ---
 
 ## 🏗️ System Architecture
 
-```
-Plant
- ├── Leaf image ─────────────────────────────────────────┐
- └── Sensors (DHT22 + LDR)                                │
-        │                                                 │
-        ▼                                                 ▼
-     ESP32  ──── WiFi / HTTP POST ────►  FastAPI Backend ◄┘
-                                              │
-                                     ResNet50 prediction
-                                              │
-                                     Disease knowledge base
-                                              │
-                                     Environmental risk analysis
-                                              │
-                                              ▼
-                          Final diagnosis + causes + treatment
-                                              │
-                                              ▼
-                                  Flutter App  /  Web Dashboard
+The mobile app sends a leaf image to the FastAPI backend, which runs the ResNet50
+model and enriches the prediction with the latest ESP32 sensor readings before
+returning a full diagnosis.
+
+```mermaid
+flowchart TB
+    A[Flutter Mobile App] --> B[FastAPI Backend]
+    B --> C[ResNet50 Disease Detection Model]
+    D[ESP32-S3 Sensors] --> B
+    D --> E[DHT22 Temperature & Humidity]
+    D --> F[LDR Light Sensor]
+    B --> G[Diagnosis + Treatment + Environmental Risk]
+    G --> A
+    B --> H[Web Dashboard]
 ```
 
 ---
 
-## 📂 Project Structure
+## 🛠️ Tech Stack
 
-```
-plant-disease-ai/
-│
-├── backend/          # FastAPI prediction server
-│   ├── app.py            # API: /predict, /sensor-data endpoints
-│   └── requirements.txt  # Python dependencies
-│
-├── mobile_app/       # Flutter app (Android · iOS · Web · Desktop)
-│   └── lib/
-│       ├── main.dart     # App entry point
-│       ├── data/         # API client (api_config.dart), scan history
-│       ├── domain/       # Prediction model, disease info
-│       ├── ui/           # Screens & reusable widgets
-│       ├── theme/        # Light / Dark theme
-│       └── l10n/         # Arabic / English localization
-│
-├── web/              # Web dashboard (standalone HTML/JS)
-│   ├── web_dashboard.html
-│   └── legacy/           # Earlier web frontend (js/ css/)
-│
-├── hardware/         # IoT / ESP32 firmware
-│   └── esp32_sensor_sender/  # DHT22 + LDR → POST /sensor-data
-│
-├── ml/               # Machine learning
-│   ├── notebooks/        # ResNet50 K-Fold training & evaluation
-│   └── scripts/          # Report / dataset utility scripts
-│
-├── models/           # Trained weights (downloaded separately — see models/README.md)
-│
-├── data/             # Disease knowledge base (42 classes · bilingual)
-│   ├── diseases_database.json   # used by the Flutter app
-│   ├── diseases_database.csv
-│   └── diseases_database.xlsx
-│
-├── docs/             # Reports, diagrams, screenshots
-└── assets/           # Team photos & shared images
-```
+**Machine Learning**
+- Python · PyTorch · Torchvision
+- ResNet50 (Transfer Learning, fine-tuned)
+- Image preprocessing & augmentation · Test-Time Augmentation (TTA)
+
+**Backend**
+- FastAPI · REST API · JSON responses · Uvicorn
+
+**Mobile**
+- Flutter · Dart
+- Arabic / English UI (localization) · Light / Dark mode
+- Firebase Auth · provider · image_picker · google_fonts · share_plus
+
+**IoT**
+- ESP32-S3 · DHT22 (temperature/humidity) · LDR (light)
+- HTTP POST sensor updates over WiFi
+
+**Tools**
+- GitHub · Google Colab / Jupyter · VS Code · Android Studio
 
 ---
 
-## 🚀 Quick Start
-
-### 1 — Get the model weights
-
-The trained model (~91 MB) is **not** in the repo. Download it and place it at
-`models/resnet50_43_FINAL_best.pth` — see [`models/README.md`](models/README.md).
-
-### 2 — Backend (AI Server)
-
-```bash
-python3 -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\activate
-pip install -r backend/requirements.txt
-cd backend
-uvicorn app:app --host 0.0.0.0 --port 8000 --reload
-```
-
-Verify at `http://localhost:8000` → `{ "message": "Plant Disease API is running" }`
-
-### 3 — Flutter App
-
-```bash
-cd mobile_app
-flutter pub get
-flutter run
-```
-
-For a **physical device**, set your server IP in `mobile_app/lib/data/api_config.dart`.
-
-> **Firebase setup:** the app uses Firebase Auth. The config files
-> (`google-services.json`, `GoogleService-Info.plist`, `firebase_options.dart`)
-> are **not committed** to this repo for security. Add your own from the
-> [Firebase Console](https://console.firebase.google.com/), or run
-> `flutterfire configure`.
-
-### 4 — Hardware (ESP32)
-
-Upload `hardware/esp32_sensor_sender/esp32_sensor_sender.ino` to the ESP32-S3
-board. Full wiring guide → [`docs/plant_hardware_setup.md`](docs/plant_hardware_setup.md).
-
----
-
-## 🧠 Model
+## 📊 Dataset Summary
 
 | Property | Value |
 |---|---|
-| Architecture | ResNet50 (pretrained `IMAGENET1K_V2`, Transfer Learning) |
-| Classes | **43** — 42 plant (38 PlantVillage + 4 Rice) + a `Not_plant` guard class |
-| Input | 224 × 224 px |
-| **Test Accuracy** | **99.61%** · Precision 99.53% · Recall 99.54% · F1 99.53% |
-| Cross-validation | 5-Fold · Mean **99.26% ± 0.13%** (best Fold 4: 99.37% val) |
-| Dataset | **77,809** images · 80% train / 20% held-out test (~15,562 test images) |
-| Balancing | 1,200 images / class → 51,600 per training fold |
-| Training | AdamW · CosineAnnealingLR · label smoothing 0.05 · Early Stopping · TTA · Google Colab (NVIDIA L4) |
-| Datasets | PlantVillage + RiceLeafs_merged_224 |
+| Total images | **77,809** |
+| Classes | **43** (42 plant: 38 PlantVillage + 4 Rice) + `Not_plant` |
+| Sources | PlantVillage + RiceLeafs_merged_224 (+ curated non-plant images) |
+| Split | 80% train / 20% held-out test (~62,247 / ~15,562) |
+| Class balancing | 1,200 images per class → 51,600 per training fold |
+| Image size | 224 × 224 px |
+
+## 🧠 Model Training Summary
+
+- **Architecture:** ResNet50 pretrained on ImageNet (`IMAGENET1K_V2`), fully fine-tuned, final layer `Linear(2048 → 43)`.
+- **Strategy:** Transfer learning · 5-Fold Cross-Validation · Early Stopping · Test-Time Augmentation.
+- **Optimizer:** AdamW (lr 1e-4, weight decay 1e-4) · **Scheduler:** CosineAnnealingLR.
+- **Loss:** CrossEntropyLoss (label smoothing 0.05) · **Batch:** 32 · **Max epochs:** 30 · **Seed:** 42.
+- **Augmentation:** random crop/flip/rotation, color jitter, perspective, Gaussian blur, random erasing — to simulate real mobile-camera conditions.
+
+Full details → [`docs/training_details.md`](docs/training_details.md)
+
+## 🏆 Results
+
+| Metric | Value |
+|---|---|
+| **Test Accuracy** | **99.61%** |
+| Test Precision (macro) | 99.53% |
+| Test Recall (macro) | 99.54% |
+| Test F1-Score (macro) | 99.53% |
+| Best fold (Fold 4) validation | 99.37% |
+| Mean CV accuracy | 99.26% ± 0.13% |
 
 > Test accuracy (99.61%) is measured on **15,562 held-out images the model never
-> saw during training**, with Test-Time Augmentation — and it is *higher* than
-> validation accuracy (99.37%), a strong sign the model is not overfitting.
-
-Full training strategy & K-Fold results → [`docs/training_details.md`](docs/training_details.md)
-Full evaluation report → [`docs/ResNet50_Plant_Disease_Report.pdf`](docs/ResNet50_Plant_Disease_Report.pdf)
+> saw during training**, and is *higher* than validation accuracy (99.37%) — a
+> strong indicator the model generalizes well and is not overfitting.
 
 ---
 
-## 🔌 API Endpoints
+## 📱 Mobile App
+
+A single Flutter codebase targeting **Android, iOS, Web, and Desktop**. Key
+screens: splash, authentication, home/capture, image preview, diagnosis result
+(with confidence and top-3), history, history detail, and settings. Features
+bilingual Arabic/English localization, light/dark themes, Firebase
+authentication, and local scan history.
+
+## 🔌 Backend API
+
+FastAPI service that loads the ResNet50 checkpoint and exposes:
 
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/` | Health check |
 | `POST` | `/predict` | Leaf image → disease + confidence + top-3 + environmental analysis |
 | `POST` | `/sensor-data` | ESP32 pushes temperature, humidity, light |
-| `GET` | `/sensor-data` | Get latest sensor reading |
+| `GET` | `/sensor-data` | Latest sensor reading |
 
 <details>
 <summary><b>Example <code>/predict</code> response</b></summary>
@@ -207,38 +191,127 @@ Full evaluation report → [`docs/ResNet50_Plant_Disease_Report.pdf`](docs/ResNe
 ```
 </details>
 
----
+## 📡 IoT Hardware Integration
 
-## 🌾 Supported Crops
-
-Apple · Blueberry · Cherry · Corn · Grape · Orange · Peach · Bell Pepper ·
-Potato · Raspberry · **Rice** · Soybean · Squash · Strawberry · Tomato
-
----
-
-## 🛠️ Tech Stack
-
-**Backend:** FastAPI · PyTorch · Torchvision · Pillow · Uvicorn
-**Mobile:** Flutter · Firebase Auth · provider · image_picker · http · google_fonts · share_plus · flutter_localizations
-**Hardware:** ESP32-S3 · DHT22 · LDR
-**ML:** Python · PyTorch · scikit-learn · Google Colab
+An **ESP32-S3** board reads a **DHT22** (temperature & humidity) and an **LDR**
+(light intensity), then pushes readings to the backend via `POST /sensor-data`
+over WiFi. During a prediction, the backend merges the latest reading with the
+disease result to produce an environmental risk assessment and improvement tips.
+Firmware: [`hardware/esp32_sensor_sender/`](hardware/esp32_sensor_sender/) ·
+Wiring guide: [`docs/plant_hardware_setup.md`](docs/plant_hardware_setup.md).
 
 ---
 
-## 👥 Team
+## 📸 Screenshots
 
-Yousef Ellawah · Omar Walid · Mohamed Emad · Nour Mohamed · Menna Mohamed · Ahmed Abdul-Wahab
+> Screenshots live in [`docs/screenshots/`](docs/screenshots/). Replace the
+> placeholders below with your own captures.
 
-Supervisor: **Dr. Heba ELnemr** — Misr University for Science and Technology (MUST), 2026
+| Screen | Path |
+|---|---|
+| Mobile app home | `docs/screenshots/home.png` |
+| Image upload | `docs/screenshots/upload.png` |
+| Diagnosis result | `docs/screenshots/result.png` |
+| Arabic treatment guidance | `docs/screenshots/treatment-ar.png` |
+| IoT sensor readings | `docs/screenshots/sensor-dashboard.png` |
+| Backend API test response | `docs/screenshots/api-response.png` |
+
+<!-- Example once images are added:
+![Home](docs/screenshots/home.png)
+![Result](docs/screenshots/result.png)
+-->
 
 ---
+
+## 📂 Repository Structure
+
+```
+plant-disease-ai/
+├── backend/          # FastAPI backend and model inference API
+├── mobile_app/       # Flutter mobile application (Android · iOS · Web · Desktop)
+├── hardware/         # ESP32-S3 sensor firmware (DHT22 + LDR)
+├── ml/               # Training notebooks and utility scripts
+├── models/           # Model weights location + download instructions
+├── web/              # Standalone web dashboard
+├── data/             # Bilingual disease knowledge base (symptoms, treatment)
+├── docs/             # Documentation, reports, and screenshots
+├── assets/           # Team photos and shared images
+└── README.md
+```
+
+---
+
+## ▶️ How to Run
+
+### 1 — Backend (AI server)
+
+```bash
+python3 -m venv venv
+source venv/bin/activate          # Windows: venv\Scripts\activate
+pip install -r backend/requirements.txt
+cd backend
+uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Check `http://localhost:8000` → `{ "message": "Plant Disease API is running" }`
+
+### 2 — Mobile app
+
+```bash
+cd mobile_app
+flutter pub get
+flutter run
+```
+
+Set your server IP in `mobile_app/lib/data/api_config.dart` when testing on a
+physical device.
+
+> **Firebase:** the app uses Firebase Auth. Config files (`google-services.json`,
+> `GoogleService-Info.plist`, `firebase_options.dart`) are **not committed** for
+> security — add your own from the [Firebase Console](https://console.firebase.google.com/)
+> or run `flutterfire configure`.
+
+### 3 — Hardware (ESP32)
+
+Flash `hardware/esp32_sensor_sender/esp32_sensor_sender.ino` to the ESP32-S3 and
+set your WiFi credentials and backend URL. See
+[`docs/plant_hardware_setup.md`](docs/plant_hardware_setup.md).
+
+---
+
+## 📦 Model Weights
+
+The trained weights (~91 MB) are **not** stored in the repository to keep it
+lightweight. Download the model and place it at:
+
+```
+models/resnet50_43_FINAL_best.pth
+```
+
+The backend (`backend/app.py`) loads the checkpoint from this exact path. Full
+instructions and the download link are in [`models/README.md`](models/README.md).
+
+---
+
+## 🚀 Future Improvements
+
+- Deploy the backend online (e.g. Render / Railway / a cloud VM).
+- Add a real-time sensor dashboard with historical charts.
+- Expand to more plant species and disease classes.
+- Improve treatment-recommendation quality with expert-reviewed content.
+- Add user accounts and cloud-synced diagnosis history.
+- Convert the model to a mobile-friendly format (TorchScript / TFLite / ONNX) for on-device inference.
+- Add CI and automated testing (backend + Flutter).
+
+---
+
+## 👤 Author
+
+**Yousef Ellawah** — [github.com/Y-LA](https://github.com/Y-LA)
+
+**Team:** Yousef Ellawah · Omar Walid · Mohamed Emad · Nour Mohamed · Menna Mohamed · Ahmed Abdul-Wahab
+**Supervisor:** Dr. Heba ELnemr — Misr University for Science and Technology (MUST), 2026
 
 ## 📄 License
 
 Released under the [MIT License](LICENSE) — for educational and research purposes.
-
-<div align="center">
-
-*Graduation Project 2026 — Misr University for Science and Technology*
-
-</div>
